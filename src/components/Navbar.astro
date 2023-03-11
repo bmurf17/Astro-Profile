@@ -1,0 +1,18 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
+---
+
+<nav class="bg-zinc-100">
+  <div
+    class="container flex flex-wrap items-center justify-between mx-auto border-b-indigo-500 border-4 border-zinc-100"
+  >
+    <div class="text-lg font-semibold basis-1/5 pb-4 pt-2">Brendan</div>
+    <div class="flex flex-row basis-4/5">
+      <a class="basis-1/4 pb-4 pt-2" href="/">Home</a>
+      <a class="basis-1/4 pb-4 pt-2" href="/portfolio"> Portfolio</a>
+      <a class="basis-1/4 pb-4 pt-2" href="/posts"> Blog</a>
+      <a class="basis-1/4 pb-4 pt-2" href="/about"> About Me</a>
+    </div>
+  </div>
+</nav>
