@@ -1,5 +1,20 @@
 ---
 import Navigation from "../components/Navbar.astro";
+
+const pageTile = "About Me";
+
+const identity = {
+  firstName: "Brendan",
+  country: "Murphy",
+  occupation: "Software Devleoper",
+  hobbies: ["Reading", "Walking", "Basketball"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
 ---
 
 <html lang="en">
@@ -8,30 +23,50 @@ import Navigation from "../components/Navbar.astro";
     <link rel="icon" type="image/png" href="/126624-medium.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>About</title>
+    <title>{pageTile}</title>
   </head>
   <body>
     <Navigation />
 
     <div class="container mx-auto">
       <div class="flex flex-row">
-        <h1>About Me</h1>
+        <h1>{pageTile}</h1>
       </div>
       <div class="flex flex-row">
-        <h2>... and my new Astro site!</h2>
+        <ul>
+          <li>My name is {identity.firstName}.</li>
+          <li>
+            I live in {identity.country} and I work as a {identity.occupation}.
+          </li>
+          {
+            identity.hobbies.length >= 2 && (
+              <li>
+                Two of my hobbies are: {identity.hobbies[0]} and{" "}
+                {identity.hobbies[1]}
+              </li>
+            )
+          }
+        </ul>
       </div>
       <div class="flex flex-row">
-        <p>
-          I am working through Astro's introductory tutorial. This is the second
-          page on my website, and it's the first one I built myself!
-        </p>
+        <p>My skills are:</p>
       </div>
       <div class="flex flex-row">
-        <p>
-          This site will update as I complete more of the tutorial, so keep
-          checking back and see how my journey is going!
-        </p>
+        <ul>
+          {skills.map((skill) => <li>{skill}</li>)}
+        </ul>
       </div>
+      {happy && <p>I am happy to be learning Astro!</p>}
+
+      {finished && <p>I finished this tutorial!</p>}
+
+      {
+        goal === 3 ? (
+          <p>My goal is to finish in 3 days.</p>
+        ) : (
+          <p>My goal is not 3 days.</p>
+        )
+      }
     </div>
   </body>
 </html>
