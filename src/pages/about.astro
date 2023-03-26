@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navbar.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTile = "About Me";
 
@@ -27,12 +28,7 @@ const goal = 3;
     <title>{pageTile}</title>
   </head>
   <body>
-    <Navigation />
-
-    <div class="container mx-auto">
-      <div class="flex flex-row">
-        <h1>{pageTile}</h1>
-      </div>
+    <BaseLayout pageTitle={pageTile}>
       <div class="flex flex-row">
         <ul>
           <li>My name is {identity.firstName}.</li>
@@ -68,7 +64,6 @@ const goal = 3;
           <p>My goal is not 3 days.</p>
         )
       }
-      <Footer />
-    </div>
+    </BaseLayout>
   </body>
 </html>

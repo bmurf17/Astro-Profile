@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navbar.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "Brendan's Blog";
 ---
@@ -14,12 +15,7 @@ const pageTitle = "Brendan's Blog";
     <title>{pageTitle}</title>
   </head>
   <body>
-    <Navigation />
-
-    <div class="container mx-auto">
-      <div class="flex flex-row">
-        <h1>{pageTitle}</h1>
-      </div>
+    <BaseLayout>
       <div class="flex flex-row">
         <p>This is where I will post about my journey learning Astro.</p>
       </div>
@@ -30,6 +26,6 @@ const pageTitle = "Brendan's Blog";
           <li><a href="/posts/post-3/">Post 3</a></li>
         </ul>
       </div>
-    </div>
+    </BaseLayout>
   </body>
 </html>

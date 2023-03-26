@@ -1,7 +1,6 @@
 ---
-import Footer from "../components/Footer.astro";
-import Hamburger from "../components/Hamburger.astro";
-import Navigation from "../components/Navbar.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "Home Page";
 ---
 
 <html lang="en">
@@ -10,13 +9,11 @@ import Navigation from "../components/Navbar.astro";
     <link rel="icon" type="image/png" href="/126624-medium.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Brendan Murphy</title>
+    <title>{pageTitle}</title>
   </head>
   <body>
-    <Navigation />
-    <h1 class="text-5xl text-red-500 container flex flex-wrap mx-auto h-screen">
-      Astro
-    </h1>
-    <Footer />
+    <BaseLayout pageTitle={pageTitle}>
+      <h2>My awesome blog subtitle</h2>
+    </BaseLayout>
   </body>
 </html>
