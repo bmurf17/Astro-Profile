@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import BlogPost from "../components/BlogPost";
+import BlogPosts from "../components/BlogPosts";
 
 const allPosts = await Astro.glob("../pages/posts/*.md");
 const tags: string[] = [
@@ -21,10 +21,7 @@ const pageTitle = "Brendan's Blog";
   <body>
     <BaseLayout pageTitle={pageTitle}>
       <div class="flex flex-row">
-        <p>This is where I will post about my journey learning Astro.</p>
-      </div>
-      <div class="flex flex-row">
-        <BlogPost posts={allPosts} tags={tags} />
+        <BlogPosts client:load posts={allPosts} tags={tags} />
       </div>
     </BaseLayout>
   </body>
