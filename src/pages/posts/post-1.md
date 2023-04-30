@@ -5,7 +5,7 @@ pubDate: 2022-07-01
 description: "This is the first post of my new Astro blog."
 author: "Brendan Murphy"
 image:
-  url: "https://astro.build/assets/blog/astro-1-release-update/cover.jpeg"
+  url: "https://d1gdi8qinx8x49.cloudfront.net/940x535/88217.jpeg"
   alt: "The Astro logo with the word One."
 tags: ["astro", "blogging", "learning in public"]
 ---

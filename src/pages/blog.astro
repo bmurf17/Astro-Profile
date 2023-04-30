@@ -20,7 +20,7 @@ const pageTitle = "Brendan's Blog";
   </head>
   <body>
     <BaseLayout pageTitle={pageTitle}>
-      <div class="flex flex-row">
+      <div class="flex md:flex-row flex-col mb-4 md:mt-0 mt-4">
         <BlogPosts client:load posts={allPosts} tags={tags} />
       </div>
     </BaseLayout>
