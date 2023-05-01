@@ -1,13 +1,13 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: "Next.JS"
+title: "Book Tracker"
 pubDate: 2023-05-01
-description: "This is a about what I've learned diving into Next.JS."
+description: "A place where I can keep track of what I'm reading."
 author: "Brendan Murphy"
 image:
-  url: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg"
-  alt: "The Next JS logo."
-tags: ["next.js", "blogging", "learning in public"]
+  url: "https://novoamor.co.uk/wp-content/uploads/2020/07/whatsoever.jpg"
+  alt: "book site image"
+tags: []
 ---
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.

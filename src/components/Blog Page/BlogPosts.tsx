@@ -66,7 +66,7 @@ export default function BlogPosts({ posts, tags }: Props) {
             return (
               <a href={post.url} key={post.url}>
                 <div className="relative flex flex-col w-auto bg-zinc-200 justify-center rounded shadow-lg p-4 h-full">
-                  <img className="w-full" src={post.frontmatter.image.url} />
+                  <img className="w-full " src={post.frontmatter.image.url} />
                   <div className="text-lg font-bold flex align-middle justify-center mt-2">
                     {post.frontmatter.title}
                   </div>

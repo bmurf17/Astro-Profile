@@ -1,13 +1,13 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: "Next.JS"
+title: "Personal Site"
 pubDate: 2023-05-01
-description: "This is a about what I've learned diving into Next.JS."
+description: "A hub for where you can find me online."
 author: "Brendan Murphy"
 image:
-  url: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg"
-  alt: "The Next JS logo."
-tags: ["next.js", "blogging", "learning in public"]
+  url: "https://media.pitchfork.com/photos/63c80a33520ff5b5e58eb1d3/1:1/w_320,c_limit/The-National-First-Two-Pages-of-Frankenstein.jpg"
+  alt: "personal site image"
+tags: []
 ---
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
