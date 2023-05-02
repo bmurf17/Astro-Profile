@@ -13,6 +13,7 @@
     "@astrojs/react": "^2.1.1",
     "@astrojs/tailwind": "^3.0.1",
     "@headlessui/react": "^1.7.14",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "astro": "^2.0.17",
