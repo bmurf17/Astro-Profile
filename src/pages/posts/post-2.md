@@ -6,8 +6,8 @@ description: "This is about what I've learned diving into Astro."
 image:
   url: "https://avatars.githubusercontent.com/u/44914786?s=200&v=4"
   alt: "Thumbnails of websites from the Astro Showcase site."
-pubDate: 2022-07-08
-tags: ["astro", "learning in public", "successes"]
+pubDate: 2023-05-08
+tags: ["astro"]
 ---
 
 I got a chance to spend some time jumping into astro these past few weeks. There have been some things that I have found that I like and some things that might not be the best for some projects. But to start...
@@ -39,4 +39,5 @@ The main drawback I can see with Astro would be if you are trying to build an ap
 I think that astro will be something I am reaching for going forward. If I ever want to build some sort of blog, landing page, or marketing website, astro would probably be my first choice. I hope this helps you incase you would like to try using astro in the future!
 
 You can check out my first astro project here: [My Astro Profile](https://github.com/bmurf17/Astro-Profile). <- This website you're looking at!
+
 You should check out the [Astro Docs](https://astro.build/)
