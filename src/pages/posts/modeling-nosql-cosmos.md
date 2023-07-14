@@ -10,7 +10,7 @@ pubDate: 2023-07-08
 tags: ["cosmos", "azure", "nosql"]
 ---
 
-I have primarily been working with SQL throughout my development career. However, I've started encountering NoSQL solutions more frequently lately, specifically in Cosmos DB. Intrigued by this shift, I decided to invest my time and energy in exploring the best practices for modeling NoSQL databases.
+I have primarily been working with SQL throughout my development career. However, I've started encountering NoSQL solutions more frequently lately, specifically in Cosmos DB. Intrigued by this shift, I decided to invest my time and energy in exploring the best practices for modeling NoSQL databases in Cosmos DB.
 
 ## Mindset
 
