@@ -18,6 +18,9 @@ Sort of my go to project whenever I want to try and build something outside of w
 
 I decided it was time to try and build my book tracker out using my own api. So, I'm using for hosting my API [Railway](https://railway.app/). I also am doing a few other things on the front end to test my react skills as well. This iteration I'm no longer using Material UI and I'm instead using Headless UI and Tailwind CSS. I also went away from Create React App and I'm instead using Vite. You can follow my developement on Github.
 
+Update: 2/3/2024 
+This project was put on hold after railway did away with their free hosting plan in August of 2023. I've considered migrating over to [Render](https://render.com/) or [Fly.io](https://fly.io/) but for now this project has moved down my personal backlog.
+
 [UI Repo](https://github.com/bmurf17/book-site/tree/master/book-site)
 
 [API Repo](https://github.com/bmurf17/booksite-server)
