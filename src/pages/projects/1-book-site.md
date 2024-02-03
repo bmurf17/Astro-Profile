@@ -21,7 +21,7 @@ I decided it was time to try and build my book tracker out using my own api. So,
 Update: 2/3/2024 
 This project was put on hold after railway did away with their free hosting plan in August of 2023. I've considered migrating over to [Render](https://render.com/) or [Fly.io](https://fly.io/) but for now this project has moved down my personal backlog.
 
-[UI Repo](https://github.com/bmurf17/book-site/tree/master/book-site)
+[UI Repo](https://github.com/bmurf17/book-site)
 
 [API Repo](https://github.com/bmurf17/booksite-server)
 
