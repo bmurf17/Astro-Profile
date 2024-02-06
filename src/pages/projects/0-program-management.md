@@ -14,5 +14,5 @@ tags: []
 
 A spot to plan and schedule your programs all from one spot.
 
-- [Live Link]([https://learning-next-nm6jp5zoq-bmurf17-gmailcom.vercel.app/](https://learning-next-olive.vercel.app/)
+- [Live Link](https://learning-next-olive.vercel.app/)
 - [Repo](https://github.com/bmurf17/learning-next)
