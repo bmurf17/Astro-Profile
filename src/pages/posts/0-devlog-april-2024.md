@@ -20,6 +20,3 @@ I have a cool idea for a side project... I've said so many times. This time thou
 
 
 [Repo](https://github.com/bmurf17/down-the-hall)
-
-## Work
-This has been a busy month. Work wise we have a pretty tight deadline and I'm doing a lot than normal having lost a developer from our team. That being said this month has been focused mostly on image manipulation in C#. I've been doing a ton net vips work and doing a ton of performance testing. The problem is more or less I'm taking a bunch of small images and combining them into one. It has been pretty cool work, but the performance testing has been testing my skills. Moving around 8 GB of image in the cloud feels like it should be doable in a relatively quick amount of time, but I've been unable to get the times way down. Excited to dive in here, but with the deadline coming up feeling the need to crunch for sure.
