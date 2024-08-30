@@ -3,10 +3,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import BlogPosts from "../components/Blog Page/BlogPosts";
 
 var allPosts = await Astro.glob("../pages/posts/*.md");
+
+allPosts.sort((a, b) => {
+  return (
+    new Date(b.frontmatter.pubDate).getTime() -
+    new Date(a.frontmatter.pubDate).getTime()
+  );
+});
+
 const tags: string[] = [
   ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
 ];
-
 const pageTitle = "Brendan's Blog";
 ---
 
