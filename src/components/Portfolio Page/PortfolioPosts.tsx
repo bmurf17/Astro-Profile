@@ -1,7 +1,4 @@
-import { Menu, Transition } from "@headlessui/react";
-import { Fragment } from "react";
 import type { MarkdownInstance } from "astro";
-import { useState } from "react";
 
 interface Props {
   projects: MarkdownInstance<Record<string, any>>[];
@@ -15,7 +12,6 @@ interface Project {
 }
 
 export default function PortfolioPosts({ projects }: Props) {
-  console.log(projects);
   return (
     <div className="md:m-10 m-4">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
