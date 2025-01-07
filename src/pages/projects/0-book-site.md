@@ -12,14 +12,18 @@ tags: []
 
 Sort of my go to project whenever I want to try and build something outside of work. As you can see, I love iterating on this idea and just trying to grow what I can do with it. I also feel like this is where you can most clearly see my growth as a developer.
 
-## Newest Iteration
+## Iteration 4
 
-🚧 In Progress _Not Yet Deployed_
+My best book tracker for sure. This one does for sure give me a bit of free tier anxiety, but you can track all my progress over in dev logs. But you can check out the code and live site.
 
-I decided it was time to try and build my book tracker out using my own api. So, I'm using for hosting my API [Railway](https://railway.app/). I also am doing a few other things on the front end to test my react skills as well. This iteration I'm no longer using Material UI and I'm instead using Headless UI and Tailwind CSS. I also went away from Create React App and I'm instead using Vite. You can follow my developement on Github.
+[Down The Hall](https://down-the-hall.vercel.app/).
+[Repo](https://github.com/bmurf17/down-the-hall)
 
-Update: 2/3/2024 
-This project was put on hold after railway did away with their free hosting plan in August of 2023. I've considered migrating over to [Render](https://render.com/) or [Fly.io](https://fly.io/) but for now this project has moved down my personal backlog.
+## Iteration 3
+
+🚧 In Progress _Not Deployed_
+
+This iteration died when railway did away with their free tier. I was already losing steam on this iteratrion, but then when my free tier for my api and db dropped thier free tier and wipped all my data I ended up no pursuing any migration.
 
 [UI Repo](https://github.com/bmurf17/book-site)
 
