@@ -9,7 +9,7 @@ image:
 pubDate: 2025-01-26
 tags: ["next.js", "react", "neon", "drizzle", "firebase"]
 bookOfTheMonth:
-  title: "Leviathan Wakes"
+  title: "This is how you Lose the Time War"
   author: "Amal El-Mohtar & Max Gladstone"
   coverUrl: "https://m.media-amazon.com/images/I/71w0e6zz+VL._SY522_.jpg"
   description: "This book was incredible. Time-traveling pen pals who both write beautifully. One of my favorite books in a long time."
