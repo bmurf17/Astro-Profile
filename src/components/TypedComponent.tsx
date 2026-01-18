@@ -40,7 +40,7 @@ export default function TypedTransition() {
   }, [displayText, isDeleting, currentTitleIndex, titles]);
 
   return (
-    <h5 className="text-md text-blue-600 font-semibold">
+    <h5 className="">
       {displayText}
       <span className="animate-pulse">|</span>
     </h5>

@@ -16,6 +16,15 @@ const projects = (allProjects as any[])
   })
   .slice(0, 6);
 
+const allPosts = await getCollection("blog");
+const posts = (allPosts as any[])
+  .sort((a: any, b: any) => {
+    return (
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+    );
+  })
+  .slice(0, 6);
+
 const getGradient = (index: number) => {
   const gradients = [
     "from-purple-500 via-pink-500 to-red-500",
@@ -234,11 +243,11 @@ const getGradient = (index: number) => {
             class="bg-white rounded-lg shadow-xl border-4 border-blue-400 transform hover:scale-105 transition-all duration-300 hover:shadow-2xl cursor-pointer"
           >
             <div
-              class="bg-blue-400 px-4 py-2 flex items-center justify-between"
+              class="bg-pink-400 px-4 py-2 flex items-center justify-between"
             >
               <h3 class="font-bold text-white text-lg">📚 Currently Reading</h3>
               <span
-                class="text-xs bg-blue-600 text-white px-2 py-1 rounded-full"
+                class="text-xs bg-pink-600 text-white px-2 py-1 rounded-full"
                 >ACTIVE</span
               >
             </div>
@@ -296,7 +305,7 @@ const getGradient = (index: number) => {
 
             <div class="flex justify-between items-center mb-8">
               <button
-                id="prev-btn"
+                id="projects-prev-btn"
                 class="bg-gradient-to-r from-red-600 to-orange-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50"
                 aria-label="Previous project"
               >
@@ -316,12 +325,14 @@ const getGradient = (index: number) => {
 
               <div class="text-center">
                 <p class="text-sm text-gray-600 font-semibold">
-                  Record <span id="current-index">1</span> of {projects.length}
+                  Record <span id="projects-current-index">1</span> of {
+                    projects.length
+                  }
                 </p>
               </div>
 
               <button
-                id="next-btn"
+                id="projects-next-btn"
                 class="bg-gradient-to-r from-red-600 to-orange-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50"
                 aria-label="Next project"
               >
@@ -347,7 +358,7 @@ const getGradient = (index: number) => {
                 {
                   projects.map((project, index) => (
                     <div
-                      class="record-card absolute w-full max-w-md transition-all duration-700 ease-out cursor-pointer"
+                      class="project-card absolute w-full max-w-md transition-all duration-700 ease-out cursor-pointer"
                       data-index={index}
                       style="transform-style: preserve-3d;"
                     >
@@ -426,170 +437,336 @@ const getGradient = (index: number) => {
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="mb-8">
-        <div class="flex items-center gap-3 mb-4">
-          <div
-            class="h-1 flex-grow bg-gradient-to-r from-transparent via-red-400 to-transparent"
-          >
+        <div class="record-bin-section mb-8">
+          <div class="flex items-center gap-3 mb-8">
+            <div
+              class="h-1 flex-grow bg-gradient-to-r from-transparent via-red-400 to-transparent"
+            >
+            </div>
+            <h2
+              class="text-4xl font-black text-gray-800"
+              style="font-family: 'Georgia', serif;"
+            >
+              📝 Latest Singles
+            </h2>
+            <div
+              class="h-1 flex-grow bg-gradient-to-r from-transparent via-red-400 to-transparent"
+            >
+            </div>
           </div>
-          <h2
-            class="text-3xl font-black text-gray-800"
-            style="font-family: 'Georgia', serif;"
-          >
-            📝 Latest Singles
-          </h2>
-          <div
-            class="h-1 flex-grow bg-gradient-to-r from-transparent via-red-400 to-transparent"
-          >
-          </div>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {
-            [1, 2, 3].map((post) => (
-              <div class="bg-white rounded-lg shadow-lg overflow-hidden border-l-4 border-red-500 transform hover:scale-105 transition-all cursor-pointer hover:shadow-2xl">
-                <div class="p-6">
-                  <div class="flex items-start gap-3 mb-3">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center flex-shrink-0">
-                      <span class="text-white font-bold text-xl">{post}</span>
-                    </div>
-                    <div>
-                      <h4 class="font-bold text-lg">Blog Post Title {post}</h4>
-                      <p class="text-xs text-gray-500">Posted 2 weeks ago</p>
-                    </div>
-                  </div>
-                  <p class="text-sm text-gray-600">
-                    A brief excerpt from the blog post would go here to give
-                    readers a taste...
-                  </p>
-                  <div class="mt-4 flex items-center text-red-600 text-sm font-semibold">
-                    Read More →
-                  </div>
-                </div>
+          <div class="relative">
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-red-900 to-red-950 rounded-t-lg h-32 -bottom-8 opacity-20 blur-sm"
+            >
+            </div>
+
+            <div class="flex justify-between items-center mb-8">
+              <button
+                id="posts-prev-btn"
+                class="bg-gradient-to-r from-red-600 to-pink-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50"
+                aria-label="Previous post"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+
+              <div class="text-center">
+                <p class="text-sm text-gray-600 font-semibold">
+                  Single <span id="posts-current-index">1</span> of {
+                    posts.length
+                  }
+                </p>
               </div>
-            ))
-          }
-        </div>
-      </div>
-    </div>
 
-    <div
-      class="bg-gradient-to-r from-zinc-800 to-zinc-900 text-white py-6 mt-12"
-    >
-      <div class="container mx-auto px-4 text-center">
-        <p class="text-xs text-gray-400 mt-2">
-          Thanks for stopping by the shop!
-        </p>
+              <button
+                id="posts-next-btn"
+                class="bg-gradient-to-r from-red-600 to-pink-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50"
+                aria-label="Next post"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="relative h-[450px] perspective-1000">
+              <div
+                class="relative w-full h-full flex items-start justify-center"
+              >
+                {
+                  posts.map((post, index) => (
+                    <div
+                      class="post-card absolute w-full max-w-md transition-all duration-700 ease-out cursor-pointer"
+                      data-index={index}
+                      style="transform-style: preserve-3d;"
+                    >
+                      <div class="bg-white rounded-lg shadow-2xl overflow-hidden border-4 border-red-500 transform-gpu">
+                        <div
+                          class={`h-48 bg-gradient-to-br ${getGradient(
+                            index + 3,
+                          )} flex items-center justify-center relative overflow-hidden`}
+                        >
+                          {post.data.image?.url ? (
+                            <img
+                              src={post.data.image.url}
+                              alt={post.data.image.alt}
+                              class="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <>
+                              <div class="absolute inset-0 opacity-20">
+                                {[...Array(6)].map((_, i) => (
+                                  <div
+                                    class="absolute rounded-full border-2 border-white"
+                                    style={`top: ${15 + i * 12}%; left: ${
+                                      15 + i * 12
+                                    }%; right: ${15 + i * 12}%; bottom: ${
+                                      15 + i * 12
+                                    }%;`}
+                                  />
+                                ))}
+                              </div>
+                              <div class="text-white text-6xl font-black opacity-40">
+                                #{index + 1}
+                              </div>
+                            </>
+                          )}
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-br from-gray-50 to-gray-100">
+                          <h3 class="font-bold text-xl mb-2 text-gray-800">
+                            {post.data.title}
+                          </h3>
+                          <p class="text-sm text-gray-600 mb-4 line-clamp-3">
+                            {post.data.description}
+                          </p>
+
+                          {post.data.tags && post.data.tags.length > 0 && (
+                            <div class="flex flex-wrap gap-2 mb-4">
+                              {post.data.tags.slice(0, 3).map((tag: string) => (
+                                <span class="text-xs bg-red-100 text-red-800 px-3 py-1 rounded-full font-semibold">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+
+                          <div class="text-xs text-gray-500 font-semibold">
+                            Posted:{" "}
+                            {new Date(post.data.pubDate).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              },
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
       </div>
+      <div
+          class="bg-gradient-to-r from-zinc-800 to-zinc-900 text-white py-6 mt-12"
+        >
+          <div class="container mx-auto px-4 text-center">
+            <p class="text-xs text-gray-400 mt-2">
+              Thanks for stopping by the shop!
+            </p>
+          </div>
+        </div>
+
+      <style>
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+      </style>
+
+      <script
+        define:vars={{
+          totalProjects: projects.length,
+          totalPosts: posts.length,
+        }}
+      >
+        let projectsIndex = 0;
+
+        function getCardStyle(index, currentIndex, total) {
+          const diff = (index - currentIndex + total) % total;
+
+          if (diff === 0) {
+            return {
+              transform:
+                "translateX(0%) translateY(0px) rotateY(0deg) scale(1)",
+              zIndex: 50,
+              opacity: 1,
+              filter: "brightness(1)",
+            };
+          } else if (diff === 1) {
+            return {
+              transform:
+                "translateX(8%) translateY(20px) rotateY(-8deg) scale(0.95)",
+              zIndex: 40,
+              opacity: 0.8,
+              filter: "brightness(0.85)",
+            };
+          } else if (diff === 2) {
+            return {
+              transform:
+                "translateX(14%) translateY(35px) rotateY(-12deg) scale(0.9)",
+              zIndex: 30,
+              opacity: 0.6,
+              filter: "brightness(0.7)",
+            };
+          } else if (diff === 3) {
+            return {
+              transform:
+                "translateX(18%) translateY(45px) rotateY(-14deg) scale(0.85)",
+              zIndex: 20,
+              opacity: 0.4,
+              filter: "brightness(0.6)",
+            };
+          } else {
+            return {
+              transform:
+                "translateX(20%) translateY(50px) rotateY(-15deg) scale(0.8)",
+              zIndex: 10,
+              opacity: 0.2,
+              filter: "brightness(0.5)",
+            };
+          }
+        }
+
+        function updateProjects() {
+          const cards = document.querySelectorAll(".project-card");
+          cards.forEach((card, index) => {
+            const style = getCardStyle(index, projectsIndex, totalProjects);
+            card.style.transform = style.transform;
+            card.style.zIndex = style.zIndex;
+            card.style.opacity = style.opacity;
+            card.style.filter = style.filter;
+          });
+
+          document.getElementById("projects-current-index").textContent = (
+            projectsIndex + 1
+          ).toString();
+        }
+
+        function handleProjectsNext() {
+          projectsIndex = (projectsIndex + 1) % totalProjects;
+          updateProjects();
+        }
+
+        function handleProjectsPrev() {
+          projectsIndex = (projectsIndex - 1 + totalProjects) % totalProjects;
+          updateProjects();
+        }
+
+        function handleProjectCardClick(clickedIndex) {
+          if (clickedIndex !== projectsIndex) {
+            projectsIndex = clickedIndex;
+            updateProjects();
+          }
+        }
+
+        // Posts Carousel
+        let postsIndex = 0;
+
+        function updatePosts() {
+          const cards = document.querySelectorAll(".post-card");
+          cards.forEach((card, index) => {
+            const style = getCardStyle(index, postsIndex, totalPosts);
+            card.style.transform = style.transform;
+            card.style.zIndex = style.zIndex;
+            card.style.opacity = style.opacity;
+            card.style.filter = style.filter;
+          });
+
+          document.getElementById("posts-current-index").textContent = (
+            postsIndex + 1
+          ).toString();
+        }
+
+        function handlePostsNext() {
+          postsIndex = (postsIndex + 1) % totalPosts;
+          updatePosts();
+        }
+
+        function handlePostsPrev() {
+          postsIndex = (postsIndex - 1 + totalPosts) % totalPosts;
+          updatePosts();
+        }
+
+        function handlePostCardClick(clickedIndex) {
+          if (clickedIndex !== postsIndex) {
+            postsIndex = clickedIndex;
+            updatePosts();
+          }
+        }
+
+        // Initialize
+        updateProjects();
+        updatePosts();
+
+        // Projects Event Listeners
+        document
+          .getElementById("projects-prev-btn")
+          .addEventListener("click", handleProjectsPrev);
+        document
+          .getElementById("projects-next-btn")
+          .addEventListener("click", handleProjectsNext);
+        document.querySelectorAll(".project-card").forEach((card, index) => {
+          card.addEventListener("click", () => handleProjectCardClick(index));
+        });
+
+        // Posts Event Listeners
+        document
+          .getElementById("posts-prev-btn")
+          .addEventListener("click", handlePostsPrev);
+        document
+          .getElementById("posts-next-btn")
+          .addEventListener("click", handlePostsNext);
+        document.querySelectorAll(".post-card").forEach((card, index) => {
+          card.addEventListener("click", () => handlePostCardClick(index));
+        });
+      </script>
     </div>
   </body>
-
-  <style>
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .perspective-1000 {
-      perspective: 1000px;
-    }
-  </style>
-
-  <script define:vars={{ totalProjects: projects.length }}>
-    let currentIndex = 0;
-
-    function getCardStyle(index) {
-      const diff = (index - currentIndex + totalProjects) % totalProjects;
-
-      if (diff === 0) {
-        return {
-          transform: "translateX(0%) translateY(0px) rotateY(0deg) scale(1)",
-          zIndex: 50,
-          opacity: 1,
-          filter: "brightness(1)",
-        };
-      } else if (diff === 1) {
-        return {
-          transform:
-            "translateX(8%) translateY(20px) rotateY(-8deg) scale(0.95)",
-          zIndex: 40,
-          opacity: 0.8,
-          filter: "brightness(0.85)",
-        };
-      } else if (diff === 2) {
-        return {
-          transform:
-            "translateX(14%) translateY(35px) rotateY(-12deg) scale(0.9)",
-          zIndex: 30,
-          opacity: 0.6,
-          filter: "brightness(0.7)",
-        };
-      } else if (diff === 3) {
-        return {
-          transform:
-            "translateX(18%) translateY(45px) rotateY(-14deg) scale(0.85)",
-          zIndex: 20,
-          opacity: 0.4,
-          filter: "brightness(0.6)",
-        };
-      } else {
-        return {
-          transform:
-            "translateX(20%) translateY(50px) rotateY(-15deg) scale(0.8)",
-          zIndex: 10,
-          opacity: 0.2,
-          filter: "brightness(0.5)",
-        };
-      }
-    }
-
-    function updateCards() {
-      const cards = document.querySelectorAll(".record-card");
-      cards.forEach((card, index) => {
-        const style = getCardStyle(index);
-        card.style.transform = style.transform;
-        card.style.zIndex = style.zIndex;
-        card.style.opacity = style.opacity;
-        card.style.filter = style.filter;
-      });
-
-      document.getElementById("current-index").textContent = (
-        currentIndex + 1
-      ).toString();
-    }
-
-    function handleNext() {
-      currentIndex = (currentIndex + 1) % totalProjects;
-      updateCards();
-    }
-
-    function handlePrev() {
-      currentIndex = (currentIndex - 1 + totalProjects) % totalProjects;
-      updateCards();
-    }
-
-    function handleCardClick(clickedIndex) {
-      if (clickedIndex !== currentIndex) {
-        const diff =
-          (clickedIndex - currentIndex + totalProjects) % totalProjects;
-        currentIndex = clickedIndex;
-        updateCards();
-      }
-    }
-
-    updateCards();
-
-    document.getElementById("prev-btn").addEventListener("click", handlePrev);
-    document.getElementById("next-btn").addEventListener("click", handleNext);
-
-    document.querySelectorAll(".record-card").forEach((card, index) => {
-      card.addEventListener("click", () => handleCardClick(index));
-    });
-  </script>
 </html>
