@@ -67,43 +67,62 @@
         </a>
       </div>
     </div>
-    <div class="flex flex-col justify-start my-4 bg-white rounded-md">
-      <div class="flex flex-row m-4 align-middle">
-        <div class="mr-2 mt-3">
-          <svg
-            width="24"
-            height="24"
-            xmlns="http://www.w3.org/2000/svg"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            ><path
-              d="M24 21h-24v-18h24v18zm-23-16.477v15.477h22v-15.477l-10.999 10-11.001-10zm21.089-.523h-20.176l10.088 9.171 10.088-9.171z"
-            ></path></svg
+
+          <div class="relative w-full h-64 flex items-center justify-center">
+        <div class="vinyl-record">
+          <div
+            class="absolute inset-0 rounded-full bg-gradient-to-br from-gray-900 via-gray-800 to-black shadow-2xl"
           >
-        </div>
-        <div class="flex flex-col">
-          <p class="text-left">email</p>
-          <p>bmurf17@gmail.com</p>
+          </div>
+
+          <div class="absolute inset-0 rounded-full opacity-30">
+            {
+              [...Array(8)].map((_, i) => (
+                <div
+                  class="absolute rounded-full border border-gray-600"
+                  style={{
+                    top: `${10 + i * 10}%`,
+                    left: `${10 + i * 10}%`,
+                    right: `${10 + i * 10}%`,
+                    bottom: `${10 + i * 10}%`,
+                  }}
+                />
+              ))
+            }
+          </div>
+
+          <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-gradient-to-br from-red-600 to-red-800 shadow-lg flex items-center justify-center"
+          >
+            <div class="text-white text-center">
+              <p class="text-xs font-bold">BRENDAN</p>
+              <p class="text-[10px]">MURPHY</p>
+            </div>
+          </div>
+
+          <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-zinc-200 shadow-inner"
+          >
+          </div>
         </div>
       </div>
-      <div class="flex flex-row m-4">
-        <div class="mr-2 mt-3">
-          <svg
-            width="24"
-            height="24"
-            xmlns="http://www.w3.org/2000/svg"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            ><path
-              d="M12 10c-1.104 0-2-.896-2-2s.896-2 2-2 2 .896 2 2-.896 2-2 2m0-5c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3m-7 2.602c0-3.517 3.271-6.602 7-6.602s7 3.085 7 6.602c0 3.455-2.563 7.543-7 14.527-4.489-7.073-7-11.072-7-14.527m7-7.602c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602"
-            ></path></svg
-          >
-        </div>
-        <div class="flex flex-col">
-          <p class="text-left">Location</p>
-          <p>Detroit, Michigan</p>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
+
+<style>
+  .vinyl-record {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    animation: spin 3s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

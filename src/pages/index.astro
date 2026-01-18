@@ -5,9 +5,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import TypedTransition from "../components/TypedComponent";
 import Navigation from "../components/Navbar.astro";
 import Timeline from "../components/Timeline";
+import { getCollection } from "astro:content";
 const pageTitle = "Home Page";
+const allProjects = await getCollection("projects");
+const projects = (allProjects as any[])
+  .sort((a: any, b: any) => {
+    return (
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+    );
+  })
+  .slice(0, 6);
 
-const v2Active = false;
+const getGradient = (index: number) => {
+  const gradients = [
+    "from-purple-500 via-pink-500 to-red-500",
+    "from-blue-500 via-cyan-500 to-teal-500",
+    "from-orange-500 via-red-500 to-pink-500",
+    "from-green-500 via-emerald-500 to-teal-500",
+    "from-indigo-500 via-purple-500 to-pink-500",
+    "from-yellow-500 via-orange-500 to-red-500",
+  ];
+  return gradients[index % gradients.length];
+};
 ---
 
 <html lang="en">
@@ -18,47 +37,559 @@ const v2Active = false;
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
   </head>
-  <body>
-    {
-      v2Active ? (
-        <div class="flex flex-col h-screen">
-          <Navigation />
-          <div class="flex-1 flex flex-col gap-4 m-4">
-            <div class="flex flex-col md:flex-row gap-4">
-              <div class="flex items-center hover:rounded-2xl md:w-1/2 w-full">
-                <div class="rounded-lg p-8 hover:cursor-pointer transition-all duration-300 ease-in-out bg-gray-300 flex justify-start items-center w-full hover:scale-95 hover:shadow-lg h-full">
-                  <img class="h-28 md:w-28" src="/profile.png" />
-                  <div class="ml-4">
-                    <h3 class="text-xl text-blue-700 font-semibold">
-                      Brendan Murphy
-                    </h3>
-                    <h5 class="text-md text-blue-600 font-semibold">
-                      <TypedTransition client:load />
-                    </h5>
+  <body class="bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
+    <div class="min-h-screen">
+      <div
+        class="bg-gradient-to-r from-red-700 via-orange-600 to-amber-700 text-white shadow-2xl"
+      >
+        <div class="container mx-auto px-4 py-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1
+                class="text-4xl md:text-5xl font-black tracking-tight"
+                style="font-family: 'Georgia', serif;"
+              >
+                Brendan Murphy
+              </h1>
+              <p class="text-sm md:text-base text-amber-100 mt-1">
+                Full Stack Developer
+              </p>
+            </div>
+            <div class="hidden md:block">
+              <div
+                class="w-16 h-16 rounded-full bg-black border-4 border-amber-400 animate-spin-slow"
+                style="animation: spin 4s linear infinite;"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mx-auto px-4 py-8">
+        <div class="mb-8">
+          <div
+            class="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-lg shadow-2xl overflow-hidden border-4 border-amber-600"
+          >
+            <div class="bg-amber-600 px-4 py-2">
+              <h2 class="text-xl font-bold text-white">🎵 CHECKING OUT</h2>
+            </div>
+            <div class="p-6 md:p-8">
+              <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="relative flex-shrink-0">
+                  <div
+                    class="w-48 h-48 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-gray-900 via-gray-800 to-black shadow-2xl relative animate-spin-slow"
+                    style="animation: spin 3s linear infinite;"
+                  >
+                    <div class="absolute inset-0 rounded-full opacity-30">
+                      {
+                        [...Array(8)].map((_, i) => (
+                          <div
+                            class="absolute rounded-full border border-gray-600"
+                            style={`top: ${10 + i * 10}%; left: ${
+                              10 + i * 10
+                            }%; right: ${10 + i * 10}%; bottom: ${
+                              10 + i * 10
+                            }%;`}
+                          />
+                        ))
+                      }
+                    </div>
+                    <div
+                      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-red-600 to-red-800 shadow-lg flex items-center justify-center"
+                    >
+                      <img
+                        src="/profile.png"
+                        alt="Profile"
+                        class="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover"
+                      />
+                    </div>
+                    <div
+                      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-zinc-200 shadow-inner"
+                    >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex-1 text-center md:text-left">
+                  <h3 class="text-3xl md:text-4xl font-black text-white mb-2">
+                    Brendan Murphy
+                  </h3>
+                  <div
+                    class="text-xl md:text-2xl text-amber-400 font-semibold mb-4"
+                  >
+                    <TypedTransition client:load />
+                  </div>
+                  <p class="text-gray-300 mb-6 text-sm md:text-base">
+                    Life long learner who loves spending time playing and
+                    building with tech! Delivering high quality solutions who
+                    has been working in the industry since 2021.
+                  </p>
+
+                  <div class="flex justify-center md:justify-start gap-3">
+                    <a
+                      href="https://github.com/bmurf17"
+                      class="transform hover:scale-110 transition-transform"
+                    >
+                      <div
+                        class="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center shadow-lg border-2 border-amber-600"
+                      >
+                        <svg
+                          class="w-6 h-6 text-zinc-900"
+                          viewBox="0 0 496 512"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/brendanmurphy17/"
+                      class="transform hover:scale-110 transition-transform"
+                    >
+                      <div
+                        class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center shadow-lg border-2 border-blue-700"
+                      >
+                        <svg
+                          class="w-6 h-6 text-white"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </a>
+                    <a
+                      href="https://www.twitch.tv/bmurf17"
+                      class="transform hover:scale-110 transition-transform"
+                    >
+                      <div
+                        class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center shadow-lg border-2 border-purple-700"
+                      >
+                        <svg
+                          class="w-6 h-6 text-white"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
-              <div class="flex flex-col gap-4 md:w-1/2 w-full">
-                <div class="rounded-lg p-8 hover:cursor-pointer transition-all duration-300 ease-in-out bg-gray-300 flex justify-start items-center w-full hover:scale-95 hover:shadow-lg">
-                  Blog Post
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div
+            class="bg-white rounded-lg shadow-xl border-4 border-orange-400 transform hover:scale-105 transition-all duration-300 hover:shadow-2xl cursor-pointer"
+          >
+            <div
+              class="bg-orange-400 px-4 py-2 flex items-center justify-between"
+            >
+              <h3 class="font-bold text-white text-lg">
+                🎧 Currently Spinning
+              </h3>
+              <span
+                class="text-xs bg-orange-600 text-white px-2 py-1 rounded-full"
+                >LIVE</span
+              >
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-4 mb-4">
+                <div
+                  class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-700 rounded shadow-lg flex items-center justify-center"
+                >
+                  <svg
+                    class="w-10 h-10 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
+                    ></path>
+                  </svg>
                 </div>
-                <div class="rounded-lg p-8 hover:cursor-pointer transition-all duration-300 ease-in-out bg-gray-300 flex justify-start items-center w-full hover:scale-95 hover:shadow-lg">
-                  Projects
+                <div>
+                  <p class="text-sm text-gray-600 font-semibold">
+                    Last Played on Spotify
+                  </p>
+                  <p class="text-xs text-gray-500 mt-1">
+                    Connect your account to see what's playing
+                  </p>
                 </div>
               </div>
             </div>
-            <Timeline client:load />
           </div>
-          <div class="h-8">footer</div>
+
+          <div
+            class="bg-white rounded-lg shadow-xl border-4 border-blue-400 transform hover:scale-105 transition-all duration-300 hover:shadow-2xl cursor-pointer"
+          >
+            <div
+              class="bg-blue-400 px-4 py-2 flex items-center justify-between"
+            >
+              <h3 class="font-bold text-white text-lg">📚 Currently Reading</h3>
+              <span
+                class="text-xs bg-blue-600 text-white px-2 py-1 rounded-full"
+                >ACTIVE</span
+              >
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-4 mb-4">
+                <div
+                  class="w-20 h-20 bg-gradient-to-br from-amber-600 to-amber-800 rounded shadow-lg flex items-center justify-center"
+                >
+                  <svg
+                    class="w-10 h-10 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm text-gray-600 font-semibold">
+                    My Book Tracking
+                  </p>
+                  <p class="text-xs text-gray-500 mt-1">
+                    See what I'm reading right now
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      ) : (
-        <BaseLayout pageTitle={pageTitle}>
-          <div class="flex md:flex-row flex-col mb-4 md:mt-0 mt-4">
-            <Hero />
-            <AboutMe />
+
+        <div class="record-bin-section mb-8">
+          <div class="flex items-center gap-3 mb-8">
+            <div
+              class="h-1 flex-grow bg-gradient-to-r from-transparent via-orange-400 to-transparent"
+            >
+            </div>
+            <h2
+              class="text-4xl font-black text-gray-800"
+              style="font-family: 'Georgia', serif;"
+            >
+              💿 The Collection
+            </h2>
+            <div
+              class="h-1 flex-grow bg-gradient-to-r from-transparent via-orange-400 to-transparent"
+            >
+            </div>
           </div>
-        </BaseLayout>
-      )
-    }
+
+          <div class="relative">
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-amber-900 to-amber-950 rounded-t-lg h-32 -bottom-8 opacity-20 blur-sm"
+            >
+            </div>
+
+            <div class="flex justify-between items-center mb-8">
+              <button
+                id="prev-btn"
+                class="bg-gradient-to-r from-red-600 to-orange-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50"
+                aria-label="Previous project"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+
+              <div class="text-center">
+                <p class="text-sm text-gray-600 font-semibold">
+                  Record <span id="current-index">1</span> of {projects.length}
+                </p>
+              </div>
+
+              <button
+                id="next-btn"
+                class="bg-gradient-to-r from-red-600 to-orange-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50"
+                aria-label="Next project"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="relative h-[500px] perspective-1000">
+              <div
+                class="relative w-full h-full flex items-start justify-center"
+              >
+                {
+                  projects.map((project, index) => (
+                    <div
+                      class="record-card absolute w-full max-w-md transition-all duration-700 ease-out cursor-pointer"
+                      data-index={index}
+                      style="transform-style: preserve-3d;"
+                    >
+                      <div class="bg-white rounded-lg shadow-2xl overflow-hidden border-4 border-amber-600 transform-gpu">
+                        <div
+                          class={`h-64 bg-gradient-to-br ${getGradient(
+                            index,
+                          )} flex items-center justify-center relative overflow-hidden`}
+                        >
+                          {project.data.image?.url ? (
+                            <img
+                              src={project.data.image.url}
+                              alt={project.data.image.alt}
+                              class="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <>
+                              <div class="absolute inset-0 opacity-20">
+                                {[...Array(8)].map((_, i) => (
+                                  <div
+                                    class="absolute rounded-full border-2 border-white"
+                                    style={`top: ${10 + i * 10}%; left: ${
+                                      10 + i * 10
+                                    }%; right: ${10 + i * 10}%; bottom: ${
+                                      10 + i * 10
+                                    }%;`}
+                                  />
+                                ))}
+                              </div>
+                              <div class="text-white text-7xl font-black opacity-40">
+                                #{index + 1}
+                              </div>
+                            </>
+                          )}
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-br from-gray-50 to-gray-100">
+                          <h3 class="font-bold text-2xl mb-2 text-gray-800">
+                            {project.data.title}
+                          </h3>
+                          <p class="text-sm text-gray-600 mb-4">
+                            {project.data.description}
+                          </p>
+
+                          {project.data.tags &&
+                            project.data.tags.length > 0 && (
+                              <div class="flex flex-wrap gap-2 mb-4">
+                                {project.data.tags.map((tag: string) => (
+                                  <span class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-semibold">
+                                    {tag}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+
+                          <div class="text-xs text-gray-500 font-semibold">
+                            Released:{" "}
+                            {new Date(project.data.pubDate).toLocaleDateString(
+                              "en-US",
+                              { month: "short", year: "numeric" },
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+
+            <div class="text-center mt-12 text-gray-600 text-sm">
+              <p>👆 Click on any record to bring it to the front</p>
+              <p class="mt-1">
+                or use the arrows to browse through the collection
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="h-1 flex-grow bg-gradient-to-r from-transparent via-red-400 to-transparent"
+          >
+          </div>
+          <h2
+            class="text-3xl font-black text-gray-800"
+            style="font-family: 'Georgia', serif;"
+          >
+            📝 Latest Singles
+          </h2>
+          <div
+            class="h-1 flex-grow bg-gradient-to-r from-transparent via-red-400 to-transparent"
+          >
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {
+            [1, 2, 3].map((post) => (
+              <div class="bg-white rounded-lg shadow-lg overflow-hidden border-l-4 border-red-500 transform hover:scale-105 transition-all cursor-pointer hover:shadow-2xl">
+                <div class="p-6">
+                  <div class="flex items-start gap-3 mb-3">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center flex-shrink-0">
+                      <span class="text-white font-bold text-xl">{post}</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-lg">Blog Post Title {post}</h4>
+                      <p class="text-xs text-gray-500">Posted 2 weeks ago</p>
+                    </div>
+                  </div>
+                  <p class="text-sm text-gray-600">
+                    A brief excerpt from the blog post would go here to give
+                    readers a taste...
+                  </p>
+                  <div class="mt-4 flex items-center text-red-600 text-sm font-semibold">
+                    Read More →
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="bg-gradient-to-r from-zinc-800 to-zinc-900 text-white py-6 mt-12"
+    >
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-xs text-gray-400 mt-2">
+          Thanks for stopping by the shop!
+        </p>
+      </div>
+    </div>
   </body>
+
+  <style>
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+  </style>
+
+  <script define:vars={{ totalProjects: projects.length }}>
+    let currentIndex = 0;
+
+    function getCardStyle(index) {
+      const diff = (index - currentIndex + totalProjects) % totalProjects;
+
+      if (diff === 0) {
+        return {
+          transform: "translateX(0%) translateY(0px) rotateY(0deg) scale(1)",
+          zIndex: 50,
+          opacity: 1,
+          filter: "brightness(1)",
+        };
+      } else if (diff === 1) {
+        return {
+          transform:
+            "translateX(8%) translateY(20px) rotateY(-8deg) scale(0.95)",
+          zIndex: 40,
+          opacity: 0.8,
+          filter: "brightness(0.85)",
+        };
+      } else if (diff === 2) {
+        return {
+          transform:
+            "translateX(14%) translateY(35px) rotateY(-12deg) scale(0.9)",
+          zIndex: 30,
+          opacity: 0.6,
+          filter: "brightness(0.7)",
+        };
+      } else if (diff === 3) {
+        return {
+          transform:
+            "translateX(18%) translateY(45px) rotateY(-14deg) scale(0.85)",
+          zIndex: 20,
+          opacity: 0.4,
+          filter: "brightness(0.6)",
+        };
+      } else {
+        return {
+          transform:
+            "translateX(20%) translateY(50px) rotateY(-15deg) scale(0.8)",
+          zIndex: 10,
+          opacity: 0.2,
+          filter: "brightness(0.5)",
+        };
+      }
+    }
+
+    function updateCards() {
+      const cards = document.querySelectorAll(".record-card");
+      cards.forEach((card, index) => {
+        const style = getCardStyle(index);
+        card.style.transform = style.transform;
+        card.style.zIndex = style.zIndex;
+        card.style.opacity = style.opacity;
+        card.style.filter = style.filter;
+      });
+
+      document.getElementById("current-index").textContent = (
+        currentIndex + 1
+      ).toString();
+    }
+
+    function handleNext() {
+      currentIndex = (currentIndex + 1) % totalProjects;
+      updateCards();
+    }
+
+    function handlePrev() {
+      currentIndex = (currentIndex - 1 + totalProjects) % totalProjects;
+      updateCards();
+    }
+
+    function handleCardClick(clickedIndex) {
+      if (clickedIndex !== currentIndex) {
+        const diff =
+          (clickedIndex - currentIndex + totalProjects) % totalProjects;
+        currentIndex = clickedIndex;
+        updateCards();
+      }
+    }
+
+    updateCards();
+
+    document.getElementById("prev-btn").addEventListener("click", handlePrev);
+    document.getElementById("next-btn").addEventListener("click", handleNext);
+
+    document.querySelectorAll(".record-card").forEach((card, index) => {
+      card.addEventListener("click", () => handleCardClick(index));
+    });
+  </script>
 </html>
