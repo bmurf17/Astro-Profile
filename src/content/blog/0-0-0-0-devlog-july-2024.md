@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: Dev Log July 2024
 author: Brendan Murphy
 description: "What I built this month"

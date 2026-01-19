@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: Azure Migration
 author: Brendan Murphy
 description: "Some things to consider if you're looking to migrate to Azure."

@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: Astro
 author: Brendan Murphy
 description: "This is about what I've learned diving into Astro."

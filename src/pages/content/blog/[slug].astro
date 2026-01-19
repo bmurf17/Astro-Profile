@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+import { getCollection, getEntryBySlug } from "astro:content";
+import TwoColumnLayout from "../../../layouts/TwoColumnLayout.astro";
+
+export async function getStaticPaths() {
+  const blogs = await getCollection("blog");
+  return blogs.map((p) => ({
+    params: { slug: p.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+if (!slug) {
+  throw new Error("Missing slug");
+}
+const project = await getEntryBySlug("blog", slug);
+
+if (!project) {
+  throw new Error(`Project not found: ${slug}`);
+}
+
+const { Content } = await project.render();
+
+---
+
+<TwoColumnLayout frontmatter={project.data}>
+  <Content />
+</TwoColumnLayout>

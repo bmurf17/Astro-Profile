@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: Next.JS
 author: Brendan Murphy
 description: "Learning Next and comparing it React"

@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/TwoColumnLayout.astro
 title: Dev Log January 2024
 author: Brendan Murphy
 description: "What I built this month, January 2025"

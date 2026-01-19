@@ -622,12 +622,13 @@ const getGradient = (index: number) => {
               >
                 {
                   posts.map((post, index) => (
-                    <div
-                      class="post-card absolute w-full max-w-md transition-all duration-700 ease-out cursor-pointer"
+                    <a
+                      href={`/content/blog/${post.slug}`}
++                      class="post-card absolute w-full max-w-md transition-all duration-700 ease-out cursor-pointer block"
                       data-index={index}
                       style="transform-style: preserve-3d;"
                     >
-                      <div class="bg-white rounded-lg shadow-2xl overflow-hidden border-4 border-red-500 transform-gpu">
+                      <div class="bg-white rounded-lg shadow-2xl overflow-hidden border-4 border-red-600 transform-gpu hover:border-red-500 transition-colors">
                         <div
                           class={`h-48 bg-gradient-to-br ${getGradient(
                             index + 3,
@@ -691,7 +692,7 @@ const getGradient = (index: number) => {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </a>
                   ))
                 }
               </div>
@@ -783,10 +784,9 @@ const getGradient = (index: number) => {
           document.querySelectorAll(".project-card").forEach((card, index) => {
             card.addEventListener("click", (e) => {
               if (index !== projectsIndex) {
-                e.preventDefault(); // Prevent navigation
+                e.preventDefault();
                 handleProjectCardClick(index);
               }
-              // If index === projectsIndex, link will work normally
             });
           });
 
@@ -824,6 +824,14 @@ const getGradient = (index: number) => {
 
         function updatePosts() {
           const cards = document.querySelectorAll(".post-card");
+          document.querySelectorAll(".post-card").forEach((card, index) => {
+            card.addEventListener("click", (e) => {
+              if (index !== postsIndex) {
+                e.preventDefault();
+                handlePostCardClick(index);
+              }
+            });
+          });
           cards.forEach((card, index) => {
             const style = getCardStyle(index, postsIndex, totalPosts);
             card.style.transform = style.transform;

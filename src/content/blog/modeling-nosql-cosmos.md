@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: Modeling NoSQL In Cosmos
 author: Brendan Murphy
 description: "Best practices when modeling a cosmos document database"
