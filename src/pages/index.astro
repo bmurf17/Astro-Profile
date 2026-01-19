@@ -6,13 +6,35 @@ import TypedTransition from "../components/TypedComponent";
 const pageTitle = "Home Page";
 const fetchCurrentlyReading = async () => {
   try {
+    const params = new URLSearchParams({
+      user: 'user_2ltL1mKsLUOvWNRKuHnG5CTtKpS',
+      status: '0',
+      order: 'updateddate',
+      page: '1',
+      pageSize: '3'
+    });
+    
     const response = await fetch(
-      "https://down-the-hall.vercel.app/api/book?status=0&order=updateddate&page=1&pageSize=3",
+      `https://down-the-hall.vercel.app/api/books?${params.toString()}`
     );
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     const data = await response.json();
-    return data.books || [];
+    
+    const transformedBooks = data.books.map((item: any) => ({
+      ...item.book,
+      author: {
+        id: item.author?.id,
+        name: item.author?.name
+      }
+    }));
+    
+    return transformedBooks || [];
   } catch (error) {
-    console.error("Error fetching currently reading books:", error);
+    console.error('Error fetching currently reading books:', error);
     return [];
   }
 };
