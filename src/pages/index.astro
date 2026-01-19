@@ -7,6 +7,21 @@ import Navigation from "../components/Navbar.astro";
 import Timeline from "../components/Timeline";
 import { getCollection } from "astro:content";
 const pageTitle = "Home Page";
+const fetchCurrentlyReading = async () => {
+  try {
+    const response = await fetch(
+      "https://down-the-hall.vercel.app/api/book?status=0&order=updateddate&page=1&pageSize=3",
+    );
+    const data = await response.json();
+    return data.books || [];
+  } catch (error) {
+    console.error("Error fetching currently reading books:", error);
+    return [];
+  }
+};
+
+const currentlyReadingBooks = await fetchCurrentlyReading();
+
 const allProjects = await getCollection("projects");
 const projects = (allProjects as any[])
   .sort((a: any, b: any) => {
@@ -248,33 +263,69 @@ const getGradient = (index: number) => {
               <h3 class="font-bold text-white text-lg">📚 Currently Reading</h3>
               <span
                 class="text-xs bg-pink-600 text-white px-2 py-1 rounded-full"
-                >ACTIVE</span
               >
+                {currentlyReadingBooks.length > 0 ? "ACTIVE" : "NONE"}
+              </span>
             </div>
             <div class="p-6">
-              <div class="flex items-center gap-4 mb-4">
-                <div
-                  class="w-20 h-20 bg-gradient-to-br from-amber-600 to-amber-800 rounded shadow-lg flex items-center justify-center"
-                >
-                  <svg
-                    class="w-10 h-10 text-white"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-sm text-gray-600 font-semibold">
-                    My Book Tracking
-                  </p>
-                  <p class="text-xs text-gray-500 mt-1">
-                    See what I'm reading right now
-                  </p>
-                </div>
-              </div>
+              {
+                currentlyReadingBooks.length > 0 ? (
+                  currentlyReadingBooks.slice(0, 1).map((book: any) => (
+                    <div class="flex items-start gap-4 mb-4">
+                      {book.image ? (
+                        <img
+                          src={book.image}
+                          alt={book.title}
+                          class="w-16 h-24 rounded shadow-lg object-cover"
+                        />
+                      ) : (
+                        <div class="w-16 h-24 bg-gradient-to-br from-amber-600 to-amber-800 rounded shadow-lg flex items-center justify-center">
+                          <svg
+                            class="w-8 h-8 text-white"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                          </svg>
+                        </div>
+                      )}
+                      <div class="flex-1">
+                        <p class="text-sm font-bold text-gray-800 line-clamp-2">
+                          {book.title || "Untitled"}
+                        </p>
+                        <p class="text-xs text-gray-600 mt-1">
+                          By: {book.author?.name || "Unknown Author"}
+                        </p>
+                        {book.pageCount && (
+                          <p class="text-xs text-gray-500 mt-1">
+                            {book.pageCount} pages
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div class="flex items-center gap-4 mb-4">
+                    <div class="w-20 h-20 bg-gradient-to-br from-amber-600 to-amber-800 rounded shadow-lg flex items-center justify-center">
+                      <svg
+                        class="w-10 h-10 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="text-sm text-gray-600 font-semibold">
+                        My Book Tracking
+                      </p>
+                      <p class="text-xs text-gray-500 mt-1">
+                        No books currently reading
+                      </p>
+                    </div>
+                  </div>
+                )
+              }
             </div>
           </div>
         </div>
@@ -592,18 +643,16 @@ const getGradient = (index: number) => {
             </div>
           </div>
         </div>
-
-        
       </div>
       <div
-          class="bg-gradient-to-r from-zinc-800 to-zinc-900 text-white py-6 mt-12"
-        >
-          <div class="container mx-auto px-4 text-center">
-            <p class="text-xs text-gray-400 mt-2">
-              Thanks for stopping by the shop!
-            </p>
-          </div>
+        class="bg-gradient-to-r from-zinc-800 to-zinc-900 text-white py-6 mt-12"
+      >
+        <div class="container mx-auto px-4 text-center">
+          <p class="text-xs text-gray-400 mt-2">
+            Thanks for stopping by the shop!
+          </p>
         </div>
+      </div>
 
       <style>
         @keyframes spin {
