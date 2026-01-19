@@ -1,11 +1,8 @@
 ---
-import AboutMe from "../components/Home Page/AboutMe.astro";
-import Hero from "../components/Home Page/Hero.astro";
+import PortfolioPosts from "../components/Portfolio Page/PortfolioPosts";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import TypedTransition from "../components/TypedComponent";
-import Navigation from "../components/Navbar.astro";
-import Timeline from "../components/Timeline";
 import { getCollection } from "astro:content";
+import TypedTransition from "../components/TypedComponent";
 const pageTitle = "Home Page";
 const fetchCurrentlyReading = async () => {
   try {
