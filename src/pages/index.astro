@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import TypedTransition from "../components/TypedComponent";
+import Navbar from "../components/Navbar.astro";
 const pageTitle = "Home Page";
 const fetchCurrentlyReading = async () => {
   try {
@@ -98,33 +99,7 @@ const getGradient = (index: number) => {
   </head>
   <body class="bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
     <div class="min-h-screen">
-      <div
-        class="bg-gradient-to-r from-red-700 via-orange-600 to-amber-700 text-white shadow-2xl"
-      >
-        <div class="container mx-auto px-4 py-6">
-          <div class="flex items-center justify-between">
-            <div>
-              <h1
-                class="text-4xl md:text-5xl font-black tracking-tight"
-                style="font-family: 'Georgia', serif;"
-              >
-                Brendan Murphy
-              </h1>
-              <p class="text-sm md:text-base text-amber-100 mt-1">
-                Full Stack Developer
-              </p>
-            </div>
-            <div class="hidden md:block">
-              <div
-                class="w-16 h-16 rounded-full bg-black border-4 border-amber-400 animate-spin-slow"
-                style="animation: spin 4s linear infinite;"
-              >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <Navbar />
       <div class="container mx-auto px-4 py-8">
         <div class="mb-8">
           <div

@@ -1,8 +1,10 @@
 ---
+import Navbar from "../components/Navbar.astro";
+
 // import BaseLayout from "./BaseLayout.astro";
 const { frontmatter } = Astro.props;
 ---
-
+  <Navbar />
   <div class="md:flex md:gap-8 md:m-10 m-4">
     <div class="md:w-3/4">
       <p><em>{frontmatter.description}</em></p>
