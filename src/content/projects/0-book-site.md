@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: "Book Tracker"
 pubDate: 2023-05-01
 description: "A place where I can keep track of what I'm reading."

@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: "Personal Site"
 pubDate: 2023-05-01
 description: "A hub for where you can find me online."

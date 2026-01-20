@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: "Program Management"
 pubDate: 2023-05-01
 description: "Keep track and plan programs all from one spot"
